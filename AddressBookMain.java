@@ -1,16 +1,37 @@
 
-//Start with Displaying Welcome to Address Book Program in AddressBookMain class on Master Branch
-//Ability to create a Contacts in Address Book with first and last names, address, city, state, zip, 
-//phone number and email
+
+//Ability to add a new Contact to Address Book
 
 package com.addressbook;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class AddressBookMain {
 
 	public static void main(String[] args) {
 		//print statement 
 		System.out.println("Welcome to Address Book Program");
-
+		//local variable
+		int choice = 1;
+		//create scanner object
+		Scanner scanner = new Scanner(System.in);
+		AddressBookService addressBookService = new AddressBookService();
+		//ask to user to perform specific task 
+		System.out.println("1.Add Person\\n2.Update Person\\n3.Delete Person");
+		System.out.println("Enter Your Choice");
+		choice = scanner.nextInt();
+		
+		//switch case perform operation according to user choice 
+		switch(choice) {
+		//case 1 perform operation to add person
+		case 1:
+			//calling method 
+			addressBookService.createPerson();
+			addressBookService.print();
+		}
+		
 	}
 
 }
@@ -136,5 +157,101 @@ class AddressBookModel {
 	
 	
 }
+
+
+
+class AddressBookService{
+	//Declaring ArrayList
+	static ArrayList<AddressBookModel> addressBookModels = new ArrayList<>();
+	//create scanner object
+	public static Scanner scanner = new Scanner(System.in);
+	
+	//add contact to addressBook
+	public void createPerson() {
+		//create object of AddressBookModel class
+		AddressBookModel addressBookModel = new AddressBookModel();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter the First name ");
+		String firstName = scanner.next();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter the Last Name");
+		String lastName = scanner.next();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter the City Name");
+		String cityName =scanner.next();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter the state Name");
+		String stateName = scanner.next();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter the Phone Number");
+		double phoneNo = scanner.nextDouble();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter your Zip code");
+		int zipCode = scanner.nextInt();
+		
+		//ask to user enter the value and scan value 
+		System.out.println("Enter Your Email Id");
+		String emailId = scanner.next();
+		
+		//calling set method 
+		addressBookModel.setFirstName(firstName);
+		addressBookModel.setLastName(lastName);
+		addressBookModel.setCity(cityName);
+		addressBookModel.setState(stateName);
+		addressBookModel.setPhoneNo(phoneNo);
+		addressBookModel.setZipCode(zipCode);
+		addressBookModel.setEmailId(emailId);
+		
+		
+	
+		
+	}
+	
+	
+	//method to print the value
+	public void print() {
+		//for loop item is a type of object and addressBookModels is a object 
+		for(Object item : addressBookModels) {
+			//print statement 
+			System.out.println(item);
+			
+		}
+		
+		
+	}
+}
+
+
+
+
+
+/*
+ * OUTPUT
+ * Welcome to Address Book Program
+1.Add Person\n2.Update Person\n3.Delete Person
+Enter Your Choice
+1
+Enter the First name 
+Ram
+Enter the Last Name
+
+Enter the City Name
+ayodhaya 
+Enter the state Name
+fsd
+Enter the Phone Number
+554
+Enter your Zip code
+4224
+Enter Your Email Id
+asfa
+
+ */
 
 
