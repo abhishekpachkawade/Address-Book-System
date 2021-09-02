@@ -43,7 +43,12 @@ public class AddressBookMain {
 				addressBookService.updatePerson(name);
 				addressBookService.print();
 			    break;
-			
+			case 3:
+				System.out.println("Enter name of person to Delete");
+				String n = scanner.next();
+				addressBookService.DeletePerson(n);
+				addressBookService.print();
+				break;
 			}
 		
 		}
@@ -280,6 +285,27 @@ class AddressBookService{
 	}
 	
 	
+	static public AddressBookModel getContact(String name) {
+		for (AddressBookModel cont : addressBookModels) {
+			if (cont.getFirstName().equals(name)) {
+				return cont;
+			} else {
+				System.out.println("Invalid name");
+			}
+
+		}
+		return null;
+	}
+	
+	
+	
+	public void DeletePerson(String name) // Delete Person
+	{
+		
+		
+		addressBookModels.remove(getContact(name));
+		
+	}
 	
 	
 	//method to print the value
@@ -301,48 +327,52 @@ class AddressBookService{
 
 /*
  * OUTPUT
- Welcome to Address Book Program
+Welcome to Address Book Program
 1.Add Person\n2.Update Person\n3.Delete Person
 Enter Your Choice
 1
 Enter the First name 
-ss
+abhi
 Enter the Last Name
-sfas
+df
 Enter the City Name
-sda
+gg
 Enter the state Name
-sf
+gd
 Enter the Phone Number
-58
+55
 Enter your Zip code
-fa
+gd
 Enter Your Email Id
-asf
-AddressBookModel [firstName=ss, lastName=sfas, address=null, city=sda, state=sf, zipCode=fa, phoneNo=58.0, emailId=asf]
+dg
+AddressBookModel [firstName=abhi, lastName=df, address=null, city=gg, state=gd, zipCode=gd, phoneNo=55.0, emailId=dg]
 1.Add Person\n2.Update Person\n3.Delete Person
 Enter Your Choice
-2
-Enter the name of person to Update
-ss
-Enter what to update(city/state/phone/zip):
-saf
-Hi  ss Please edit your details
-Hi Person ss Please edit your address
-sf
-Hi  ss Please edit your city
-fs
-Hi ss Please edit your state
-f
-Hi ss Please edit your phone number
-524
-Hi ss Please edit your zip
-fs
-Hi ss Successfully you have updated your details. 
-AddressBookModel [firstName=ss, lastName=sfas, address=, city=fs, state=f, zipCode=fs, phoneNo=524.0, emailId=asf]
+1
+Enter the First name 
+ds
+Enter the Last Name
+dg
+Enter the City Name
+dg
+Enter the state Name
+d
+Enter the Phone Number
+66
+Enter your Zip code
+dg
+Enter Your Email Id
+dg
+AddressBookModel [firstName=abhi, lastName=df, address=null, city=gg, state=gd, zipCode=gd, phoneNo=55.0, emailId=dg]
+AddressBookModel [firstName=ds, lastName=dg, address=null, city=dg, state=d, zipCode=dg, phoneNo=66.0, emailId=dg]
 1.Add Person\n2.Update Person\n3.Delete Person
 Enter Your Choice
-
+3
+Enter name of person to Delete
+abhi
+AddressBookModel [firstName=ds, lastName=dg, address=null, city=dg, state=d, zipCode=dg, phoneNo=66.0, emailId=dg]
+1.Add Person\n2.Update Person\n3.Delete Person
+Enter Your Choice
 
  */
 
