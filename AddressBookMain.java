@@ -18,18 +18,34 @@ public class AddressBookMain {
 		//create scanner object
 		Scanner scanner = new Scanner(System.in);
 		AddressBookService addressBookService = new AddressBookService();
-		//ask to user to perform specific task 
-		System.out.println("1.Add Person\\n2.Update Person\\n3.Delete Person");
-		System.out.println("Enter Your Choice");
-		choice = scanner.nextInt();
+		while (choice != 0) {
+			
+			//ask to user to perform specific task 
+			System.out.println("1.Add Person\\n2.Update Person\\n3.Delete Person");
+			System.out.println("Enter Your Choice");
+			choice = scanner.nextInt();
+			
+			//switch case perform operation according to user choice 
+			switch(choice) {
+			//case 1 perform operation to add person
+			case 1:
+				//calling method 
+				addressBookService.createPerson();
+				addressBookService.print();
+				break;
+			case 2:
+				//ask to user update your data 
+				System.out.println("Enter the name of person to Update");
+				String name = scanner.next();
+				System.out.println("Enter what to update(city/state/phone/zip):");
+				String update = scanner.next();
+				//calling the method
+				addressBookService.updatePerson(name);
+				addressBookService.print();
+			    break;
+			
+			}
 		
-		//switch case perform operation according to user choice 
-		switch(choice) {
-		//case 1 perform operation to add person
-		case 1:
-			//calling method 
-			addressBookService.createPerson();
-			addressBookService.print();
 		}
 		
 	}
@@ -44,9 +60,23 @@ class AddressBookModel {
 	String address;
 	String city;
 	String state;
-	int zipCode;
+	String zipCode;
 	double phoneNo;
 	String emailId;
+	
+	public AddressBookModel(String firstName, String lastName, double phoneNo, String email, String state, String city,
+			String zip) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNo = phoneNo;
+		this.emailId = email;
+		this.state = state;
+		this.city = city;
+		this.zipCode = zip;
+	}
+	
+	
 	
 	
 	//toString method return the string value
@@ -58,6 +88,12 @@ class AddressBookModel {
 	}
 
 
+	public AddressBookModel() {
+		super();
+
+	}
+	
+	
 	//get method 
 	public String getFirstName() {
 		return firstName;
@@ -119,13 +155,13 @@ class AddressBookModel {
 
 
 	//get method 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
 
 	//set method 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
@@ -193,7 +229,7 @@ class AddressBookService{
 		
 		//ask to user enter the value and scan value 
 		System.out.println("Enter your Zip code");
-		int zipCode = scanner.nextInt();
+		String zipCode = scanner.next();
 		
 		//ask to user enter the value and scan value 
 		System.out.println("Enter Your Email Id");
@@ -208,10 +244,42 @@ class AddressBookService{
 		addressBookModel.setZipCode(zipCode);
 		addressBookModel.setEmailId(emailId);
 		
-		
+		addressBookModels.add(addressBookModel);
 	
 		
 	}
+	
+	//method update person
+	public void updatePerson(String name) {
+		//for loop
+		 for( int search = 0 ; search < addressBookModels.size() ; search++ ) {
+			 	//update the detail 
+	            if( addressBookModels.get(search).getFirstName().equalsIgnoreCase(name)) {
+	            	AddressBookModel person = addressBookModels.get(search);
+	                System.out.println("Hi  "+person.getFirstName()+" Please edit your details");
+	                System.out.println("Hi Person "+person.getFirstName()+" Please edit your address");
+	                scanner.next();
+	                String address = scanner.nextLine();
+	                person.setAddress(address);
+	                System.out.println("Hi  "+person.getFirstName()+" Please edit your city");
+	                String city = scanner.next();
+	                person.setCity(city);
+	                System.out.println("Hi "+person.getFirstName()+" Please edit your state");
+	                String state = scanner.next();
+	                person.setState(state);
+	                System.out.println("Hi "+person.getFirstName()+" Please edit your phone number");
+	                long phone = scanner.nextLong();
+	                person.setPhoneNo(phone);
+	                System.out.println("Hi "+person.getFirstName()+" Please edit your zip");
+	                scanner.nextLine();
+	                String zip = scanner.nextLine();
+	                person.setZipCode(zip);
+	                System.out.println("Hi "+person.getFirstName()+" Successfully you have updated your details. ");
+	            }
+	        }
+	}
+	
+	
 	
 	
 	//method to print the value
@@ -233,24 +301,48 @@ class AddressBookService{
 
 /*
  * OUTPUT
- * Welcome to Address Book Program
+ Welcome to Address Book Program
 1.Add Person\n2.Update Person\n3.Delete Person
 Enter Your Choice
 1
 Enter the First name 
-Ram
+ss
 Enter the Last Name
-
+sfas
 Enter the City Name
-ayodhaya 
+sda
 Enter the state Name
-fsd
+sf
 Enter the Phone Number
-554
+58
 Enter your Zip code
-4224
+fa
 Enter Your Email Id
-asfa
+asf
+AddressBookModel [firstName=ss, lastName=sfas, address=null, city=sda, state=sf, zipCode=fa, phoneNo=58.0, emailId=asf]
+1.Add Person\n2.Update Person\n3.Delete Person
+Enter Your Choice
+2
+Enter the name of person to Update
+ss
+Enter what to update(city/state/phone/zip):
+saf
+Hi  ss Please edit your details
+Hi Person ss Please edit your address
+sf
+Hi  ss Please edit your city
+fs
+Hi ss Please edit your state
+f
+Hi ss Please edit your phone number
+524
+Hi ss Please edit your zip
+fs
+Hi ss Successfully you have updated your details. 
+AddressBookModel [firstName=ss, lastName=sfas, address=, city=fs, state=f, zipCode=fs, phoneNo=524.0, emailId=asf]
+1.Add Person\n2.Update Person\n3.Delete Person
+Enter Your Choice
+
 
  */
 
