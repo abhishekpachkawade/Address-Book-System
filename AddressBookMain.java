@@ -1,6 +1,6 @@
 
 
-//Ability to add a new Contact to Address Book
+//Ability to add multiple person to Address Book
 
 package com.addressbook;
 
@@ -367,12 +367,7 @@ AddressBookModel [firstName=abhi, lastName=df, address=null, city=gg, state=gd, 
 AddressBookModel [firstName=ds, lastName=dg, address=null, city=dg, state=d, zipCode=dg, phoneNo=66.0, emailId=dg]
 1.Add Person\n2.Update Person\n3.Delete Person
 Enter Your Choice
-3
-Enter name of person to Delete
-abhi
-AddressBookModel [firstName=ds, lastName=dg, address=null, city=dg, state=d, zipCode=dg, phoneNo=66.0, emailId=dg]
-1.Add Person\n2.Update Person\n3.Delete Person
-Enter Your Choice
+
 
  */
 
